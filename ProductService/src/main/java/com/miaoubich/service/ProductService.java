@@ -1,8 +1,10 @@
 package com.miaoubich.service;
 
-import org.springframework.stereotype.Service;
+import com.miaoubich.model.ProductRequest;
+import com.miaoubich.model.ProductResponse;
 
-@Service
-public class ProductService {
+public interface ProductService {
 
+	long addProduct(ProductRequest productRequest);
+	ProductResponse getProductById(long id);
 }

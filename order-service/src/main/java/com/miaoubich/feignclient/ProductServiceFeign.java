@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient("product-service/product")
-public interface ProductService {
+public interface ProductServiceFeign {
 
 	@PutMapping("/reduceQuantity/{id}")
 	ResponseEntity<Void> reduceQuantity(@PathVariable("id") long productId, 

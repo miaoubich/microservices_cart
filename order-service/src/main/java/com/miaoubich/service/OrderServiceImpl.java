@@ -5,7 +5,7 @@ import java.time.Instant;
 import org.springframework.stereotype.Service;
 
 import com.miaoubich.entity.Order;
-import com.miaoubich.feignclient.ProductService;
+import com.miaoubich.feignclient.ProductServiceFeign;
 import com.miaoubich.model.OrderRequest;
 import com.miaoubich.repository.OrderRepository;
 
@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 public class OrderServiceImpl implements OrderService{
 	
 	private final OrderRepository orderRepository;
-	private final ProductService productService;
+	private final ProductServiceFeign productServiceFeign;
 	private final String CREATED = "CREATED";
 
 	@Override
@@ -28,7 +28,7 @@ public class OrderServiceImpl implements OrderService{
 		log.info("Placing Order Request " + orderRequest);
 		
 		//Product Service -> Reduce the product quantity
-		productService.reduceQuantity(orderRequest.getProductId(), orderRequest.getQuantity());
+		productServiceFeign.reduceQuantity(orderRequest.getProductId(), orderRequest.getQuantity());
 		
 		log.info("Placing Order with status CREATED");
 		Order order = Order.builder()

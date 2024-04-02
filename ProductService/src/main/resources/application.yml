@@ -13,3 +13,12 @@ spring:
    import: configserver:http://localhost:9296
   application:
     name: product-service
+    
+management:
+ endpoints:
+  web: 
+   exposure:
+    include: '*'
+ tracing:
+  sampling:
+   probability: 1.0 

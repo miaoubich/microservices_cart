@@ -14,3 +14,11 @@ spring:
   application:
     name: order-service
     
+management:
+ endpoints:
+  web: 
+   exposure:
+    include: '*'
+ tracing:
+  sampling:
+   probability: 1.0   

@@ -5,7 +5,7 @@ spring:
     url: jdbc:mysql://${DB_HOST:localhost}:3306/orderdb
     username: root
     password: password
-    driverClassName: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update

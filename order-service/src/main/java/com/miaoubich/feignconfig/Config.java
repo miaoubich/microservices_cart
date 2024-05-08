@@ -7,6 +7,8 @@ import com.miaoubich.exception.CustomErrorDecoder;
 
 import feign.codec.ErrorDecoder;
 
+// We tell Spring to use this custom 
+// ErrorDecoder rather than the ErrorDecoder
 @Configuration
 public class Config {
 

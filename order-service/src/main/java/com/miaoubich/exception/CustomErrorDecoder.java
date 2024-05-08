@@ -19,10 +19,10 @@ public class CustomErrorDecoder implements ErrorDecoder {
 
 		try {
 			ErrorResponse errorResponse = mapper.readValue(response.body().asInputStream(), ErrorResponse.class);
-			return new CustomException(errorResponse.getErrorMessage(), errorResponse.getErrorCode(),
+			return new OrderCustomException(errorResponse.getErrorMessage(), errorResponse.getErrorCode(),
 					response.status());
 		} catch (Exception e) {
-			throw new CustomException("Internal Server Error", "INTERNAL_SERVER_ERROR", 500);
+			throw new OrderCustomException("Internal Server Error", "INTERNAL_SERVER_ERROR", 500);
 		}
 	}
 

@@ -1,5 +1,8 @@
 package com.miaoubich.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +44,9 @@ public class ProductServiceImpl implements ProductService{
 		log.info("Get the product for productId: " + id);
 		
 		Product product = productRepository.findById(id)
-				.orElseThrow(() -> new ProductServiceCustomException("The Product with the given id=" + id + " not found!", "PRODUCT_NOT_FOUND_ERROR"));
+				.orElseThrow(() -> new ProductServiceCustomException(
+						"The Product with the given id=" + id + " not found!", 
+						"PRODUCT_NOT_FOUND_ERROR"));
 		ProductResponse productResponse = new ProductResponse();
 		BeanUtils.copyProperties(product, productResponse);
 		
@@ -64,6 +69,22 @@ public class ProductServiceImpl implements ProductService{
 		product.setQuantity(product.getQuantity() - quantity);
 		productRepository.save(product);
 		log.info("Product quantity successfully updated!");
+	}
+
+	@Override
+	public List<ProductResponse> getAllProducts() {
+		List<Product> products = productRepository.findAll();
+		List<ProductResponse> productResponses = products.stream()
+				.map(product -> ProductResponse.builder()
+								.productId(product.getProductId())
+								.productName(product.getProductName())
+								.price(product.getPrice())
+								.quantity(product.getQuantity())
+								.build()
+					)
+				.toList();
+		
+		return productResponses;
 	}
 
 }

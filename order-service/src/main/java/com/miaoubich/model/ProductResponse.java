@@ -1,7 +1,5 @@
 package com.miaoubich.model;
 
-import java.time.Instant;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,13 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class OrderResponse {
+public class ProductResponse {
 
-	private long orderId;
 	private long productId;
+	private String productName;
+	private long price;
 	private long quantity;
-	private Instant orderDate;
-	private String orderStatus;
-	private long amount;
-	private ProductResponse productDetails;
 }

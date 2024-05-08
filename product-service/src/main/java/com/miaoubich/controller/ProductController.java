@@ -1,5 +1,7 @@
 package com.miaoubich.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +20,17 @@ import com.miaoubich.service.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 @RequiredArgsConstructor
 public class ProductController {
 	
 	private final ProductServiceImpl productService;
+	
+	@GetMapping
+	public ResponseEntity<?> displayAllProducts(){
+		List<ProductResponse> products = productService.getAllProducts();
+		return ResponseEntity.ok(products);
+	}
 	
 	@PostMapping
 	public ResponseEntity<Long> addProduct(@RequestBody ProductRequest productRequest){

@@ -1,6 +1,7 @@
-package com.miaoubich.model;
+package com.miaoubich.dto;
 
 public enum PaymentMode {
+
 	CASH,
 	PAYPAL,
 	DEBIT_CART,

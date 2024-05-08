@@ -1,4 +1,4 @@
-package com.miaoubich.model;
+package com.miaoubich.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,10 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ProductResponse {
+public class ErrorResponse {
 
-	private long productId;
-	private String productName;
-	private long price;
-	private long quantity;
+	private String errorMessage;
+	private String errorCode;
 }

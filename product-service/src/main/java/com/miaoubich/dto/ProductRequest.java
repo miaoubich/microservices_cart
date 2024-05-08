@@ -1,4 +1,4 @@
-package com.miaoubich.model;
+package com.miaoubich.dto;
 
 import lombok.Data;
 

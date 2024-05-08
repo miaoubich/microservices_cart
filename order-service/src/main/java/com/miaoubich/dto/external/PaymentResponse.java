@@ -1,4 +1,6 @@
-package com.miaoubich.model;
+package com.miaoubich.dto.external;
+
+import java.time.Instant;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,10 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PaymentRequest {
+public class PaymentResponse {
 
+	private long paymentId;
 	private long orderId;
-	private PaymentMode paymentMode;
+	private String paymentMode;
 	private String transactionNumber;
+	private Instant paymentDate;
+	private String paymentStatus;
 	private long amount;
 }

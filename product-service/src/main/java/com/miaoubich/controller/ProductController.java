@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.miaoubich.model.ProductRequest;
-import com.miaoubich.model.ProductResponse;
+import com.miaoubich.dto.ProductRequest;
+import com.miaoubich.dto.ProductResponse;
 import com.miaoubich.service.ProductServiceImpl;
 
 import lombok.RequiredArgsConstructor;

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.miaoubich.model.OrderRequest;
-import com.miaoubich.model.OrderResponse;
+import com.miaoubich.dto.OrderRequest;
+import com.miaoubich.dto.OrderResponse;
 import com.miaoubich.service.OrderService;
 
 import lombok.RequiredArgsConstructor;

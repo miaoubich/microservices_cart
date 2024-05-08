@@ -1,7 +1,6 @@
 package com.miaoubich.exception;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.miaoubich.model.ErrorResponse;
 
 import feign.Response;
 import feign.codec.ErrorDecoder;

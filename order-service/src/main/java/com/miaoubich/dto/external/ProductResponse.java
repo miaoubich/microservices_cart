@@ -1,4 +1,4 @@
-package com.miaoubich.model;
+package com.miaoubich.dto.external;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

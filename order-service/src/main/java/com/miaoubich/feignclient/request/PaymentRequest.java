@@ -1,6 +1,6 @@
 package com.miaoubich.feignclient.request;
 
-import com.miaoubich.model.PaymentMode;
+import com.miaoubich.dto.PaymentMode;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

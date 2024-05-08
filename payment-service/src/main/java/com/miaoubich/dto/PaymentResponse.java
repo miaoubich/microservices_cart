@@ -1,4 +1,4 @@
-package com.miaoubich.model;
+package com.miaoubich.dto;
 
 import java.time.Instant;
 
@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class OrderResponse {
+public class PaymentResponse {
 
+	private long paymentId;
 	private long orderId;
-	private long productId;
-	private long quantity;
-	private Instant orderDate;
-	private String orderStatus;
+	private String paymentMode;
+	private String transactionNumber;
+	private Instant paymentDate;
+	private String paymentStatus;
 	private long amount;
-	private ProductResponse productDetails;
 }

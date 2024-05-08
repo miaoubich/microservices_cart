@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import com.miaoubich.dto.ProductRequest;
+import com.miaoubich.dto.ProductResponse;
 import com.miaoubich.entity.Product;
 import com.miaoubich.exception.ProductServiceCustomException;
-import com.miaoubich.model.ProductRequest;
-import com.miaoubich.model.ProductResponse;
 import com.miaoubich.repository.ProductRepository;
 
 import lombok.RequiredArgsConstructor;

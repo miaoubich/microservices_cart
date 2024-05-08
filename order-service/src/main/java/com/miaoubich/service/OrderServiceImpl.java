@@ -2,19 +2,20 @@ package com.miaoubich.service;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.Random;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.miaoubich.dto.OrderRequest;
+import com.miaoubich.dto.OrderResponse;
+import com.miaoubich.dto.external.PaymentResponse;
+import com.miaoubich.dto.external.ProductResponse;
 import com.miaoubich.entity.Order;
 import com.miaoubich.exception.OrderCustomException;
 import com.miaoubich.feignclient.PaymentServiceFeign;
 import com.miaoubich.feignclient.ProductServiceFeign;
 import com.miaoubich.feignclient.request.PaymentRequest;
-import com.miaoubich.model.OrderRequest;
-import com.miaoubich.model.OrderResponse;
-import com.miaoubich.model.ProductResponse;
 import com.miaoubich.repository.OrderRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -55,11 +56,17 @@ public class OrderServiceImpl implements OrderService{
 		//Order Entity -> Save the data with Status Created
 		order = orderRepository.save(order);
 		
+		//generate transactionNumber()
+		Random ran = new Random();
+		long rendomNumber = Math.abs(ran.nextLong());
+		String transactionNumber = Long.toString(rendomNumber);
+		
 		log.info("Call Payment Service to complete the payment!");
 		PaymentRequest paymentRequest = PaymentRequest.builder()
 				.orderId(order.getOrderId())
 				.paymentMode(orderRequest.getPaymentMode())
 				.amount(orderRequest.getQuantity())
+				.transactionNumber(transactionNumber)
 				.build();
 		String orderStatus = null;
 		try {
@@ -108,13 +115,18 @@ public class OrderServiceImpl implements OrderService{
 		
 		log.info("Invoking Product Service to fetch the product detail for the order id: {}", orderId);
 		ProductResponse productResponse = webClient.get()
-										.uri("http://localhost:8080/products/" + order.getProductId())
+										.uri("http://product-service/products/" + order.getProductId())
 										.retrieve()
 										.bodyToMono(ProductResponse.class)
-										.block();// To make synchronous call
+										.block();// To convert the call from asynchronous to a synchronous call
+		log.info("Fetch the payment information from the payment service.");
+		PaymentResponse paymentResponse = webClient.get()
+										.uri("http://payment-service/payment/order/" + orderId)
+										.retrieve()
+										.bodyToMono(PaymentResponse.class)
+										.block();
 		
-		log.info("ProductResponse: " + productResponse);
-		//ProductResponse(productId=1, productName=Samsung A50, price=359, quantity=141)
+		log.info("paymentResponse: " + paymentResponse);
 		
 		ProductResponse productDetails = ProductResponse.builder()
 															.productId(productResponse.getProductId())
@@ -132,6 +144,7 @@ public class OrderServiceImpl implements OrderService{
 										.orderStatus(order.getOrderStatus())
 										.quantity(order.getQuantity())
 										.productDetails(productDetails)
+										.paymentDetails(paymentResponse)
 										.build();
 		
 		log.info("orderResponse: " + orderResponse);

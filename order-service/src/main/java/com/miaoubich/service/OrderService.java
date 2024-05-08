@@ -2,8 +2,8 @@ package com.miaoubich.service;
 
 import java.util.List;
 
-import com.miaoubich.model.OrderRequest;
-import com.miaoubich.model.OrderResponse;
+import com.miaoubich.dto.OrderRequest;
+import com.miaoubich.dto.OrderResponse;
 
 public interface OrderService {
 

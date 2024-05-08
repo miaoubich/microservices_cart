@@ -2,8 +2,8 @@ package com.miaoubich.service;
 
 import java.util.List;
 
-import com.miaoubich.model.ProductRequest;
-import com.miaoubich.model.ProductResponse;
+import com.miaoubich.dto.ProductRequest;
+import com.miaoubich.dto.ProductResponse;
 
 public interface ProductService {
 

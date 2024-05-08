@@ -2,10 +2,12 @@ package com.miaoubich.service;
 
 import java.time.Instant;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import com.miaoubich.dto.PaymentResponse;
+import com.miaoubich.dto.PaymentRequest;
 import com.miaoubich.entity.Payment;
-import com.miaoubich.model.PaymentRequest;
 import com.miaoubich.repository.PaymentRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -37,5 +39,16 @@ public class PaymentServiceImpl implements PaymentService{
 		log.info("Transaction completed successfully with Id={}", payment.getPaymentId());
 		
 		return payment.getPaymentId();
+	}
+
+	@Override
+	public PaymentResponse getPaymentDetailsById(long orderId) {
+		log.info("Fetching payment details for the Order with id: {}", orderId);
+		Payment paymentDetails = paymentRepository.findByOrderId(orderId);
+		
+		PaymentResponse paymentResponseDetails = new PaymentResponse();
+		BeanUtils.copyProperties(paymentDetails, paymentResponseDetails);
+		
+		return paymentResponseDetails;
 	}
 }

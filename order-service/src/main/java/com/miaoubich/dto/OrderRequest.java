@@ -1,4 +1,4 @@
-package com.miaoubich.model;
+package com.miaoubich.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ErrorResponse {
+public class OrderRequest {
 
-	private String errorMessage;
-	private String errorCode;
+	private long productId;
+	private long totalAmount;
+	private long quantity;
+	private PaymentMode paymentMode;
 }

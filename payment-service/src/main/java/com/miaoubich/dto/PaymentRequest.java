@@ -1,4 +1,4 @@
-package com.miaoubich.model;
+package com.miaoubich.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class OrderRequest {
+public class PaymentRequest {
 
-	private long productId;
-	private long totalAmount;
-	private long quantity;
+	private long orderId;
 	private PaymentMode paymentMode;
+	private String transactionNumber;
+	private long amount;
 }

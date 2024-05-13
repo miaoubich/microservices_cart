@@ -7,5 +7,5 @@ public interface PaymentService {
 
 	long doPayment(PaymentRequest paymentRequest);
 	
-	PaymentResponse getPaymentDetailsById(long orderId);
+	PaymentResponse getPaymentDetailsByOrderId(long orderId);
 }

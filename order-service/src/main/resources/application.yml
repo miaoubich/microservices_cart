@@ -1,6 +1,10 @@
 server:
- port: 8082
+ port: 8182
+ 
 spring:
+  application:
+    name: ORDER-SERVICE
+    
   datasource:
     url: jdbc:mysql://${DB_HOST:localhost}:3306/orderdb
     username: root
@@ -11,8 +15,6 @@ spring:
       ddl-auto: update
   #config:
    #import: configserver:http://localhost:9296 
-  application:
-    name: order-service
     
 eureka:
  instance:

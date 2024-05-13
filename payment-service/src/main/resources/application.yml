@@ -1,9 +1,9 @@
 server:
- port: 8081
+ port: 8183
  
 spring:
  application:  
-  name: payment-service
+  name: PAYMENT-SERVICE
   
  datasource:
   url: jdbc:mysql://${DB_HOST:localhost}:3306/paymentdb

@@ -75,7 +75,7 @@ public class OrderServiceImpl implements OrderService{
 			orderStatus = "PLACED";
 		}
 		catch(Exception ex) {
-			log.error("ERROR - payment failed!");
+			log.error("ERROR - payment failed, changing orderStatus to FAILED!");
 			orderStatus = "PAYMENT_FAILED";
 		}
 		
@@ -115,13 +115,13 @@ public class OrderServiceImpl implements OrderService{
 		
 		log.info("Invoking Product Service to fetch the product detail for the order id: {}", orderId);
 		ProductResponse productResponse = webClient.get()
-										.uri("http://product-service/products/" + order.getProductId())
+										.uri("http://localhost:8181/products/" + order.getProductId())
 										.retrieve()
 										.bodyToMono(ProductResponse.class)
 										.block();// To convert the call from asynchronous to a synchronous call
 		log.info("Fetch the payment information from the payment service.");
 		PaymentResponse paymentResponse = webClient.get()
-										.uri("http://payment-service/payment/order/" + orderId)
+										.uri("http://localhost:8183/payment/order/" + orderId)
 										.retrieve()
 										.bodyToMono(PaymentResponse.class)
 										.block();

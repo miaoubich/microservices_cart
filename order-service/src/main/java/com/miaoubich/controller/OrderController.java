@@ -40,7 +40,7 @@ public class OrderController {
 		return ResponseEntity.ok(orders);
 	}
 	
-	@GetMapping("{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<?> getOrderDetailsById(@PathVariable(name = "id") long id){
 		OrderResponse order = orderService.getOrderDetails(id);
 		return new ResponseEntity<>(order, HttpStatus.FOUND);

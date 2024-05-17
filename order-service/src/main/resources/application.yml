@@ -26,10 +26,28 @@ eureka:
    defaultZone: http://localhost:8761/eureka
     
 management:
+ endpoint:
+  health:
+   show-details: always
  endpoints:
   web: 
    exposure:
     include: '*'
  tracing:
   sampling:
-   probability: 1.0   
+   probability: 1.0  
+ health:
+  circuitbreakers:
+   enabled: true
+   
+resilience4j:
+  circuitbreaker:
+    instances:
+      order:
+       registerHealthIndicator: true #To see the states open -> half-open -> closed
+       event-consumer-buffer-size: 10
+       sliding-window-type: COUNT_BASED #it allows the circuitBreaker when to close and open the connection
+       sliding-window-size: 5 # number of failing tried to move from close to open state
+       wait-duration-in-open-state: 5s
+       permitted-number-of-calls-in-half-open-state: 3
+       automatic-transition-from-open-to-half-open-enabled: true 
